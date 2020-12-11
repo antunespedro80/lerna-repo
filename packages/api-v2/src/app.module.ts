@@ -7,6 +7,7 @@ import { HelpersModule } from './modules/helpers/helpers.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ObjectionModule } from './modules/database/objection/objection.module';
 import { ConfigService } from '@nestjs/config';
+import { CountryModule } from './modules/country/country.module';
 
 @Module({
     imports: [
@@ -41,6 +42,7 @@ import { ConfigService } from '@nestjs/config';
         UserModule,
         HelpersModule,
         AuthModule,
+        CountryModule,
     ],
     providers: [],
 })

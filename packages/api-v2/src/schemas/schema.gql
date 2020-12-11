@@ -7,7 +7,19 @@ type User {
   name: String!
 }
 
+type Country {
+  id: String!
+  code: String!
+  name: String!
+}
+
 type Query {
   user(id: String!): User!
   login(email: String!, password: String!): User!
+
+  """Find all countries"""
+  countries: [Country!]!
+
+  """Find one country"""
+  country(id: String!): Country
 }
