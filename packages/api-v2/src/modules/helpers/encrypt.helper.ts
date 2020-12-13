@@ -41,7 +41,15 @@ export default class EncryptHelper {
         ).toString('base64');
     }
 
-    decrypt(value: string) {
+    decryptToNumber(value: string | number): number {
+        return Number(this.decrypt(value));
+    }
+
+    decrypt(value: string | number) {
+        if (typeof value === 'number') {
+            value = String(value);
+        }
+
         try {
             value = Buffer.from(value, 'base64').toString('ascii');
             const decryptor = crypto.createDecipheriv(
@@ -49,6 +57,7 @@ export default class EncryptHelper {
                 this.secret_key,
                 this.secret_iv,
             );
+
             return (
                 decryptor.update(value, 'base64', 'utf8') +
                 decryptor.final('utf8')

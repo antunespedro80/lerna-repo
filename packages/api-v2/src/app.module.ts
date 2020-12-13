@@ -15,6 +15,8 @@ import { CountryModule } from './modules/country/country.module';
             debug: true,
             playground: true,
             autoSchemaFile: join(process.cwd(), 'src/schemas/schema.gql'),
+            //https://docs.nestjs.com/graphql/other-features#execute-enhancers-at-the-field-resolver-level & https://github.com/nestjs/graphql/issues/295
+            fieldResolverEnhancers: ['interceptors'],
         }),
         ConfigModule.forRoot({
             isGlobal: true,

@@ -15,4 +15,8 @@ export class CountryService {
             .where({ status: 1 })
             .findById(id);
     }
+
+    async findByIds(ids: number[]) {
+        return await this.countryModel.query().findByIds(ids);
+    }
 }

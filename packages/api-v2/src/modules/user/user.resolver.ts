@@ -1,18 +1,30 @@
-import { Inject } from '@nestjs/common';
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Resolver, Query, Args, Parent, ResolveField } from '@nestjs/graphql';
+import { CountryLoader } from '../country/country.loader';
+import { Country } from '../country/country.model';
+import { Decrypt } from '../helpers/decorators/decryptResolverField.decorator';
 import { DecryptPipe } from '../helpers/pipes/decrypt.pipe';
 import { User } from './user.model';
 import { UserService } from './user.service';
 
 @Resolver(() => User)
 export class UserResolver {
-    constructor(private userService: UserService) {}
+    constructor(
+        private userService: UserService,
+        private countryLoader: CountryLoader,
+    ) {}
 
-    @Query(() => User)
-    async user(@Args('id', { type: () => String }, DecryptPipe) id: string) {
-        const user = await this.userService.findById(1);
-        //const user = new User();
-        //user.name = 'Paulo';
-        return user;
+    @Query(() => [User], {
+        name: 'users',
+        description: 'Find all users',
+    })
+    findAll() {
+        return this.userService.findAll();
+    }
+
+    @ResolveField('country', () => Country, { nullable: true })
+    async country(@Decrypt('idCountry') @Parent() user: User) {
+        if (user.idCountry === null) return null;
+
+        return this.countryLoader.findByIds.load(user.idCountry);
     }
 }

@@ -10,8 +10,12 @@ const EncryptFnDecorator = (
     //obj: any,
     //transformationType: TransformationType,
 ) => {
-    const service = DecoratorHelper.getEncryptHelper();
-    return service.encrypt(String(value));
+    if (value !== null && value !== undefined) {
+        const service = DecoratorHelper.getEncryptHelper();
+        return service.encrypt(String(value));
+    } else {
+        return value;
+    }
 };
 
 export default EncryptFnDecorator;

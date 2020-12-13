@@ -8,4 +8,8 @@ export class UserService {
     async findById(id: number) {
         return this.userModel.query().findById(id);
     }
+
+    async findAll() {
+        return this.userModel.query();
+    }
 }
