@@ -4,8 +4,8 @@ import * as crypto from 'crypto';
 import { InvalidEncrpytionException } from './exceptions/InvalidEncryptionException';
 
 @Injectable()
-export default class EncryptHelper {
-    constructor(private configService: ConfigService) {}
+export class EncryptHelper {
+    constructor(private readonly configService: ConfigService) {}
 
     get secret_key() {
         const key = this.configService.get<string>('SECRET_KEY') || '';

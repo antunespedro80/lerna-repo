@@ -1,5 +1,5 @@
 import { PipeTransform, Injectable } from '@nestjs/common';
-import EncryptHelper from '../encrypt.helper';
+import { EncryptHelper } from '../encrypt.helper';
 
 @Injectable()
 export class DecryptPipe implements PipeTransform<string, string> {

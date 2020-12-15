@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Transform } from 'class-transformer/decorators';
 import { Model } from 'objection';
-import EncryptFnDecorator from '../helpers/decorators/encryptFn.decorator';
+import { EncryptFnDecorator } from '../helpers/decorators/encryptFn.decorator';
 
 @ObjectType()
 export class Country extends Model {

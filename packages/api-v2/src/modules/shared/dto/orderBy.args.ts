@@ -1,4 +1,4 @@
-import { Field, InputType, registerEnumType } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { DirectionEnum } from '../enums/direction.enum';
 
 @InputType({ isAbstract: true })

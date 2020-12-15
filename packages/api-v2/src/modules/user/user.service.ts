@@ -5,7 +5,7 @@ import { User } from './user.model';
 
 @Injectable()
 export class UserService {
-    constructor(@Inject(User) private userModel: typeof User) {}
+    constructor(@Inject(User) private readonly userModel: typeof User) {}
 
     async findById(id: number) {
         return this.userModel.query().findById(id);

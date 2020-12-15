@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import EncryptHelper from './encrypt.helper';
+import { EncryptHelper } from './encrypt.helper';
 
 /**
  * Class used to expose providers to decorators

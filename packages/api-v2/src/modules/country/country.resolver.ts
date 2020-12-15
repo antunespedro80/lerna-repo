@@ -5,7 +5,7 @@ import { CountryService } from './country.service';
 
 @Resolver(() => Country)
 export class CountryResolver {
-    constructor(private countryService: CountryService) {}
+    constructor(private readonly countryService: CountryService) {}
 
     @Query(() => [Country], {
         name: 'countries',

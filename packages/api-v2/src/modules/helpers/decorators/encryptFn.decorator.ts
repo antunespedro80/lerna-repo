@@ -1,4 +1,3 @@
-import { TransformationType } from 'class-transformer';
 import { DecoratorHelper } from '../decorator.helper';
 
 /**
@@ -18,4 +17,4 @@ const EncryptFnDecorator = (
     }
 };
 
-export default EncryptFnDecorator;
+export { EncryptFnDecorator };

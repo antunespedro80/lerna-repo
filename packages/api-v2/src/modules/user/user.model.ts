@@ -1,8 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Transform, Type } from 'class-transformer';
+import { Transform } from 'class-transformer';
 import { Model } from 'objection';
 import { Country } from '../country/country.model';
-import EncryptFnDecorator from '../helpers/decorators/encryptFn.decorator';
+import { EncryptFnDecorator } from '../helpers/decorators/encryptFn.decorator';
 
 @ObjectType()
 export class User extends Model {

@@ -1,12 +1,4 @@
-import {
-    Resolver,
-    Query,
-    Args,
-    Parent,
-    ResolveField,
-    Info,
-} from '@nestjs/graphql';
-import { GraphQLResolveInfo } from 'graphql';
+import { Resolver, Query, Args, Parent, ResolveField } from '@nestjs/graphql';
 import { CountryLoader } from '../country/country.loader';
 import { Country } from '../country/country.model';
 import { Decrypt } from '../helpers/decorators/decryptResolverField.decorator';
@@ -18,8 +10,8 @@ import { UserService } from './user.service';
 @Resolver(() => User)
 export class UserResolver {
     constructor(
-        private userService: UserService,
-        private countryLoader: CountryLoader,
+        private readonly userService: UserService,
+        private readonly countryLoader: CountryLoader,
     ) {}
 
     @Query(() => UserPaginated, {
