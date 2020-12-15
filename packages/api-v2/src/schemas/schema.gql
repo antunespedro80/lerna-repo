@@ -15,6 +15,11 @@ type User {
   country: Country
 }
 
+type UserPaginated {
+  items: [User!]
+  total: Int
+}
+
 type Query {
   """Find all countries"""
   countries: [Country!]!
@@ -23,6 +28,21 @@ type Query {
   country(id: String!): Country
 
   """Find all users"""
-  users: [User!]!
+  users(offset: Int = 0, limit: Int = 20, orderBy: UserOrderByArgs!): UserPaginated!
   login(email: String!, password: String!): User!
+}
+
+input UserOrderByArgs {
+  direction: Direction = DESC
+  field: UserOrderByField = registerDate
+}
+
+enum Direction {
+  ASC
+  DESC
+}
+
+enum UserOrderByField {
+  name
+  registerDate
 }

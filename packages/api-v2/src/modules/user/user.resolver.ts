@@ -1,8 +1,17 @@
-import { Resolver, Query, Args, Parent, ResolveField } from '@nestjs/graphql';
+import {
+    Resolver,
+    Query,
+    Args,
+    Parent,
+    ResolveField,
+    Info,
+} from '@nestjs/graphql';
+import { GraphQLResolveInfo } from 'graphql';
 import { CountryLoader } from '../country/country.loader';
 import { Country } from '../country/country.model';
 import { Decrypt } from '../helpers/decorators/decryptResolverField.decorator';
-import { DecryptPipe } from '../helpers/pipes/decrypt.pipe';
+import { UserPaginatedArgs } from './dto/userPaginated.args';
+import { UserPaginated } from './dto/userPaginated.dto';
 import { User } from './user.model';
 import { UserService } from './user.service';
 
@@ -13,12 +22,12 @@ export class UserResolver {
         private countryLoader: CountryLoader,
     ) {}
 
-    @Query(() => [User], {
+    @Query(() => UserPaginated, {
         name: 'users',
         description: 'Find all users',
     })
-    findAll() {
-        return this.userService.findAll();
+    findAll(@Args() args: UserPaginatedArgs) {
+        return this.userService.findAll(args);
     }
 
     @ResolveField('country', () => Country, { nullable: true })
