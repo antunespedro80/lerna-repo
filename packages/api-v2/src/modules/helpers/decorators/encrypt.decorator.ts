@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import { DecoratorHelper } from '../decorator.helper';
 
 /**
@@ -17,4 +18,6 @@ const EncryptFnDecorator = (
     }
 };
 
-export { EncryptFnDecorator };
+export const Encrypt = () => {
+    return Transform(EncryptFnDecorator, { toPlainOnly: true });
+};

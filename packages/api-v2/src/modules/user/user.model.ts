@@ -1,23 +1,25 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { Transform } from 'class-transformer';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Model } from 'objection';
 import { Country } from '../country/country.model';
-import { EncryptFnDecorator } from '../helpers/decorators/encryptFn.decorator';
+import { Encrypt } from '../helpers/decorators/encrypt.decorator';
 
 @ObjectType()
 export class User extends Model {
     static tableName = 'user';
 
-    @Transform(EncryptFnDecorator)
+    @Encrypt()
     @Field(() => String)
     id: string;
 
     @Field(() => String)
     name: string;
 
-    @Transform(EncryptFnDecorator)
+    @Encrypt()
     @Field(() => String, { nullable: true })
     idCountry: number | null;
+
+    @Field(() => Int)
+    registerDate: number;
 
     static relationMappings() {
         return {

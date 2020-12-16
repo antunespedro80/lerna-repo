@@ -12,6 +12,7 @@ type User {
   id: String!
   name: String!
   idCountry: String
+  registerDate: Int!
   country: Country
 }
 
@@ -45,4 +46,9 @@ enum Direction {
 enum UserOrderByField {
   name
   registerDate
+}
+
+type Mutation {
+  """Find all users"""
+  mutation(offset: Int = 0, limit: Int = 20, orderBy: UserOrderByArgs!): UserPaginated!
 }
