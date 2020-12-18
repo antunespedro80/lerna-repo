@@ -21,4 +21,8 @@ export class CountryService {
     async findByIds(ids: number[]) {
         return await this.countryModel.query().findByIds(ids);
     }
+
+    async findUsers(id: number) {
+        return await this.countryModel.relatedQuery('users').for(id);
+    }
 }

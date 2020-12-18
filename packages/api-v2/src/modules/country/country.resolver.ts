@@ -1,5 +1,7 @@
+import { ParseIntPipe } from '@nestjs/common';
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { DecryptPipe } from '../helpers/pipes/decrypt.pipe';
+import { User } from '../user/user.model';
 import { Country } from './country.model';
 import { CountryService } from './country.service';
 
@@ -22,5 +24,13 @@ export class CountryResolver {
     })
     findOne(@Args('id', { type: () => String }, DecryptPipe) id: number) {
         return this.countryService.findOne(id);
+    }
+
+    @Query(() => [User])
+    getUserByCountryId(
+        @Args('id', { type: () => String }, DecryptPipe, ParseIntPipe)
+        id: number,
+    ) {
+        return this.countryService.findUsers(id);
     }
 }

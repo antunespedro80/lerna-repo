@@ -2,18 +2,34 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Country {
+type Gender {
   id: String!
-  code: String!
   name: String!
 }
 
 type User {
   id: String!
-  name: String!
+  type: Int!
+  name: String
+  email: String
+  status: Int!
+  birthDate: Int
+  idGender: String
+  phoneNumber: String
+  registerDate: Int
+  profileImg: String
+  idLanguage: String
   idCountry: String
-  registerDate: Int!
+  idReferral: String
+  loginDisable: Int
   country: Country
+  gender: Gender
+}
+
+type Country {
+  id: String!
+  code: String!
+  name: String!
 }
 
 type UserPaginated {
@@ -27,10 +43,14 @@ type Query {
 
   """Find one country"""
   country(id: String!): Country
+  getUserByCountryId(id: String!): [User!]!
 
   """Find all users"""
   users(offset: Int = 0, limit: Int = 20, orderBy: UserOrderByArgs!): UserPaginated!
   login(email: String!, password: String!): User!
+
+  """Get all countries of given classified_account"""
+  getClassAccCountries(id: String!): [Country!]!
 }
 
 input UserOrderByArgs {
