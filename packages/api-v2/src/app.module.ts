@@ -63,6 +63,5 @@ import { ClassifiedAccountService } from './modules/classified_account/classifie
         PlanModule,
         ClassifiedAccountModule,
     ],
-    providers: [ReferralResolver, BrandResolver, GenderResolver, PlanResolver],
 })
 export class AppModule {}

@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { Referral } from './referral.model';
+import { ReferralResolver } from './referral.resolver';
 
 @Module({
-    providers: [Referral],
+    providers: [ReferralResolver, Referral],
 })
 export class ReferralModule {}
