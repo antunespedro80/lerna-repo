@@ -62,14 +62,14 @@ export class ClassifiedAccount extends Model {
                     to: `${tableNames.user}.id`,
                 },
             },
-            /*country: {
+            country: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: Country,
                 join: {
-                    from: `${tableName.classified_account}.idCountry`,
-                    to: `${tableName.country}.id`,
+                    from: `${tableNames.classified_account}.idCountry`,
+                    to: `${tableNames.country}.id`,
                 },
-            },*/
+            },
             gender: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: Gender,

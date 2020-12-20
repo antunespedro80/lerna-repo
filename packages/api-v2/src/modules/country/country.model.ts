@@ -40,15 +40,15 @@ export class Country extends Model {
                     to: `${tableNames.brand}.idCountry`,
                 },
             },
-            /*classified_accounts: {
+            principal_country_classified_accounts: {
                 relation: Model.HasManyRelation,
                 modelClass: ClassifiedAccount,
                 join: {
                     from: `${tableNames.country}.id`,
                     to: `${tableNames.classified_account}.idCountry`,
                 },
-            },*/
-            classified_accounts: {
+            },
+            all_countries_classified_accounts: {
                 relation: Model.ManyToManyRelation,
                 modelClass: ClassifiedAccount,
                 join: {
